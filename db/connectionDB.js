@@ -1,4 +1,4 @@
-import {Sequelize} from "sequelize";
+const {Sequelize} = require('sequelize')
 
 const db = new Sequelize('db_node', 'root','', {
     host: 'localhost',
@@ -6,4 +6,7 @@ const db = new Sequelize('db_node', 'root','', {
     //loging: false
 });
 
-export default db;
+module.exports ={
+    db
+}
+

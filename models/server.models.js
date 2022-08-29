@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require("cors");
-const db = require("../db/connectionDB");
+const connection = require("../db/connectionDB");
 
 class ServerModels {
 
@@ -15,14 +15,18 @@ class ServerModels {
         this.routes();
     }
 
-    async dbConnection() {
+    dbConnection = async () => {
         try {
-            await db.authenticate();
-            console.log('Database online');
-        }catch (error) {
-            throw new Error(error);
+            await connection.db.authenticate();
+            console.log('Conexxion establecida con exito')
+        } catch (error){
+            console.log(error);
+            throw new Error('Error al iniciar la base de datos')
         }
-    }
+
+
+
+    };
 
 
     middleware() {
