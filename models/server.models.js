@@ -9,7 +9,7 @@ class ServerModels {
         this.port = process.env.PORT;
         this.userPath = '/api/user'
         //Metodos iniciales
-        this.dbConnection();
+        // this.dbConnection();
         this.middleware();
 
         this.routes();
@@ -17,7 +17,7 @@ class ServerModels {
 
     dbConnection = async () => {
         try {
-            await connection.db.authenticate();
+            await connection.authenticate();
             console.log('Conexxion establecida con exito')
         } catch (error){
             console.log(error);

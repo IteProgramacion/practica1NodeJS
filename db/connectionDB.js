@@ -1,12 +1,14 @@
 const {Sequelize} = require('sequelize')
 
-const db = new Sequelize('db_node', 'root','', {
+const db = new Sequelize('db_node', 'root',null, {
     host: 'localhost',
+
     dialect: 'mysql',
+
     //loging: false
 });
 
-module.exports ={
-    db
-}
+
+
+module.exports = db;
 
