@@ -4,12 +4,15 @@ const {
     userPut,
     userPost,
     userDelete,
-    userPatch
+    userPatch,
+    userLogin,
 } = require("../controller/user.controller");
 
 const router = Router();
 
 router.get('/', userGet);
+
+router.post('/login', userLogin);
 
 router.put('/:id', userPut);
 

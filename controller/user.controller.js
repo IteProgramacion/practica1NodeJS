@@ -1,5 +1,6 @@
-const {response, request}= require('express');
+const {response, request} = require('express');
 const User = require('../models/user.model');
+const {googleVerify} = require("../helpers/google-verify");
 
 const userGet = (req, res) => {
     const params = req.query;
@@ -19,6 +20,22 @@ const userPost = async (req = request, res = response) => {
         user
     });
 }
+
+const userLogin = async (req = request, res = response) => {
+    const {id_token} = req.body;
+
+    try {
+        const googleUser = await googleVerify(id_token);
+
+        res.json({
+            msg: 'OK',
+            id_token
+        });
+    }catch (error) {
+
+    }
+}
+
 const userPut = (req, res) => {
 
     const {id} = req.params;
@@ -40,10 +57,11 @@ const userDelete = (req, res) => {
     });
 }
 
-module.exports ={
+module.exports = {
     userGet,
     userDelete,
     userPatch,
     userPost,
-    userPut
+    userPut,
+    userLogin
 }
