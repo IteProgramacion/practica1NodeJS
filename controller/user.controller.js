@@ -22,18 +22,20 @@ const userPost = async (req = request, res = response) => {
 }
 
 const userLogin = async (req = request, res = response) => {
-    const {id_token} = req.body;
-
-    try {
-        const googleUser = await googleVerify(id_token);
-
-        res.json({
-            msg: 'OK',
-            id_token
-        });
-    }catch (error) {
-
-    }
+    const response = req.body;
+    console.log(response);
+    // try {
+    //     const googleUser = await googleVerify(id_token);
+    //
+    //
+    // }catch (error) {
+    //
+    // }
+    res.json({
+        status: "OK",
+        otro: otro,
+        response
+    });
 }
 
 const userPut = (req, res) => {
