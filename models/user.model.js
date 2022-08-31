@@ -1,26 +1,44 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../db/connectionDB");
 
-const User = sequelize.define('User',{
+const User = sequelize.define('User', {
 
-    // id:{
-    //     type: DataTypes.INTEGER,
-    //     autoIncrement: true,
-    //     primaryKey: true
-    //
-    // },
-
-    name:{
+    uid: {
+        type: DataTypes.STRING
+    },
+    name: {
         type: DataTypes.STRING,
-
+        defaults: 'Anonimo'
     },
 
-    email:{
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
-            isEmail:true,
+        validate: {
+            isEmail: true,
         }
+    },
+
+    emailVerifies: {
+        type: DataTypes.BOOLEAN,
+        defaults: false
+    },
+
+    creationTime: {
+        type: DataTypes.STRING,
+    },
+    lastSignInTime: {
+        type: DataTypes.STRING
+    },
+    phoneNumber: {
+        type:DataTypes.STRING,
+        allowNull: true
+    },
+    ProviderId: {
+        type: DataTypes.STRING,
+    },
+    refreshToken:{
+        type: DataTypes.STRING
     }
 
 });

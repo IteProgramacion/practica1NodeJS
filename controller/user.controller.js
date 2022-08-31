@@ -1,6 +1,5 @@
 const {response, request} = require('express');
 const User = require('../models/user.model');
-const {googleVerify} = require("../helpers/google-verify");
 
 const userGet = (req, res) => {
     const params = req.query;
@@ -21,19 +20,23 @@ const userPost = async (req = request, res = response) => {
     });
 }
 
-const userLogin = async (req = request, res = response) => {
+const userNewCreate = async (req = request, res = response) => {
     const response = req.body;
-    console.log(response);
-    // try {
-    //     const googleUser = await googleVerify(id_token);
-    //
-    //
-    // }catch (error) {
-    //
-    // }
+    const user = new User(response);
+    await user.save();
     res.json({
         status: "OK",
-        otro: otro,
+        response
+    });
+}
+
+//es una copia fiel del register... ahora tiene que hacer el proceso de iniciar sesion y devolver la informacion del usuario al FrontEnd
+const userLogin = async (req = request, res = response) => {
+    const response = req.body;
+    const user = new User(response);
+    await user.save();
+    res.json({
+        status: "OK",
         response
     });
 }
@@ -65,5 +68,6 @@ module.exports = {
     userPatch,
     userPost,
     userPut,
-    userLogin
+    userLogin,
+    userNewCreate
 }
