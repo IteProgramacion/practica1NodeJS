@@ -32,12 +32,15 @@ const userNewCreate = async (req = request, res = response) => {
 
 //es una copia fiel del register... ahora tiene que hacer el proceso de iniciar sesion y devolver la informacion del usuario al FrontEnd
 const userLogin = async (req = request, res = response) => {
-    const response = req.body;
-    const user = new User(response);
-    await user.save();
+    const {uid} = req.body;
+    const user = await User.findAll({
+        where:{
+            uid: uid,
+        }
+    });
     res.json({
         status: "OK",
-        response
+        user: user
     });
 }
 

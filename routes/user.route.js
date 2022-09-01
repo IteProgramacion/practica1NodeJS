@@ -13,6 +13,7 @@ const router = Router();
 router.get('/', userGet);
 
 router.post('/register', userNewCreate);
+
 router.post('/login', userLogin);
 
 router.put('/:id', userPut);
